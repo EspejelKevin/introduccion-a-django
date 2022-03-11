@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Home</title>
+</head>
+<body>
+    <h1>¡Bienvenido a mi Blog!</h1>
+    {% if posts %}
+        <p>Estos son algunos posts</p>
+        {% for post in posts %}
+            <label for=""><strong>Title:</strong></label>
+            <span>{{ post.title }}</span>
+            <br>
+            <label for=""><strong>Content:</strong></label>
+            <span>{{ post.content }}</span>
+            <br>
+            <label for=""><strong>Publication date:</strong></label>
+            <span>{{ post.date }}</span>
+            <br>
+            <a href="{% url 'blog:edit' id=post.id %}">Editar</a>
+            <form action="{% url 'blog:delete' id=post.id %}" method="post" id="myform">
+                {% csrf_token %}
+                <button type="submit" id="btn-del">Eliminar</button>
+            </form>
+            <br>
+            <br>
+        {% endfor %}
+    {% else %}
+        <p>No hay posts para mostrar</p>
+    {% endif %}
+    <p>Crea un nuevo post <a href="{% url 'blog:create' %}">aquí</a></p>
+
+    
+
+</body>
+</html>

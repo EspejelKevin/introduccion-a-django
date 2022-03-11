@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit post</title>
+</head>
+<body>
+    <h1>Editando un post</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="">Title</label>
+        <input type="text" value="{{ post.title }}" name="title">
+        <br>
+        <br>
+        
+        <label for="">Title</label>
+        <textarea name="content" id="" cols="30" rows="10">{{post.content}}</textarea>
+        <br>
+        <br>
+        <label for="">Title</label>
+        <input type="date" value="{{post.date|date:'Y-m-d'}}" name="date">
+        <br>
+        <br>
+        <button type="submit">Guardar post</button>
+        <a href="{% url 'blog:home' %}">Cancelar</a>
+    </form>
+    
+</body>
+</html>
